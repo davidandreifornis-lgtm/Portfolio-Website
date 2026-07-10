@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Andrei Fornis | Junior Data Analyst</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
+        
+        .tail-container {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%);
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: rgb(59 130 246);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating elements */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-25px); }
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Project card shine effect */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 40%;
+            height: 200%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255,255,255,0.3),
+                transparent
+            );
+            transform: skewX(-25deg);
+            transition: all 0.7s;
+            opacity: 0;
+        }
+        
+        .project-card:hover::after {
+            left: 150%;
+            opacity: 1;
+            transition: all 0.7s;
+        }
+
+        /* Custom Scrollbar for Modal */
+        .custom-scroll {
+            scrollbar-width: thin;
+            scrollbar-color: rgb(51 65 85) transparent;
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: rgb(51 65 85);
+            border-radius: 20px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background-color: rgb(71 85 105);
+        }
+    </style>
+</head>
+<body class="tail-container bg-slate-950 text-slate-200 overflow-x-hidden">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-lg border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+            <!-- Stronger Emphasis -->
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <img src="logo_ni_bai.png" 
+                        alt="David Fornis Logo" 
+                        class="w-12 h-12 object-contain drop-shadow-[0_0_15px_rgb(59,130,246)] hover:scale-110 transition-all duration-300">
+                </div>
+                <span class="text-2xl font-semibold heading-font tracking-tight">David Fornis</span>
+            </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
+                <a href="#about" class="nav-link hover:text-blue-400 transition-colors">About</a>
+                <a href="#skills" class="nav-link hover:text-blue-400 transition-colors">Skills</a>
+                <a href="#projects" class="nav-link hover:text-blue-400 transition-colors">Projects</a>
+                <a href="#experience" class="nav-link hover:text-blue-400 transition-colors">Experience</a>
+                <a href="#contact" class="nav-link hover:text-blue-400 transition-colors">Contact</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <a href="https://linkedin.com/in/davidandreifornis" target="_blank" class="p-3 hover:bg-slate-800 rounded-2xl transition-colors">
+                    <i class="fab fa-linkedin text-xl"></i>
+                </a>
+                <a href="https://github.com/davidandreifornis-lgtm/davidandreifornis-lgtm" target="_blank" class="p-3 hover:bg-slate-800 rounded-2xl transition-colors">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <button onclick="toggleMobileMenu()" class="md:hidden p-3 hover:bg-slate-800 rounded-2xl transition-colors">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden fixed inset-0 bg-slate-950 z-50 pt-20 px-6">
+            <div class="flex flex-col gap-6 text-lg font-medium">
+                <a href="#about" onclick="toggleMobileMenu()" class="py-2 border-b border-slate-800">About</a>
+                <a href="#skills" onclick="toggleMobileMenu()" class="py-2 border-b border-slate-800">Skills</a>
+                <a href="#projects" onclick="toggleMobileMenu()" class="py-2 border-b border-slate-800">Projects</a>
+                <a href="#experience" onclick="toggleMobileMenu()" class="py-2 border-b border-slate-800">Experience</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-bg min-h-screen flex items-center pt-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(at_50%_30%,rgba(59,130,246,0.15),transparent_70%)]"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-2 bg-slate-800/80 backdrop-blur-sm text-blue-400 text-sm font-medium px-5 py-2 rounded-3xl border border-blue-500/30">
+                    <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    ASPIRING JUNIOR DATA ANALYST
+                </div>
+                
+                <h1 class="text-6xl md:text-7xl font-bold heading-font tracking-tighter leading-none">
+                    Hi, I'm <span class="gradient-text">David Fornis</span><br>
+                    <span class="text-blue-400">Junior Data Analyst</span>
+                </h1>
+                
+                <p class="text-xl text-slate-400 max-w-md">
+                    Turning raw data into powerful stories. Passionate about SQL, Python, visualization, and uncovering insights that drive decisions.
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects" class="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-indigo-500 transition-all rounded-3xl font-semibold flex items-center gap-3 group shadow-lg">
+                        Explore Projects
+                        <i class="fas fa-arrow-right group-active:translate-x-1 transition"></i>
+                    </a>
+                    <a href="#contact" class="px-8 py-4 border border-slate-300 hover:bg-slate-800 transition-all rounded-3xl font-semibold">
+                        Let's Connect
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-8 text-sm pt-4">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-award text-amber-400"></i>
+                        <span>Most Innovative Project 2026</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-users text-blue-400"></i>
+                        <span>SPES Enumerator</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative hidden md:block">
+                <div class="absolute -inset-12 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-transparent rounded-[5rem] -rotate-6 float"></div>
+                <div class="relative bg-slate-900 border border-slate-700 rounded-3xl p-8 shadow-2xl">
+                    <div class="aspect-video bg-slate-950 rounded-2xl overflow-hidden mb-8 relative">
+                        <div class="absolute inset-4 bg-slate-800 rounded-xl p-4">
+                            <div class="h-6 w-32 bg-gradient-to-r from-blue-500 to-purple-500 rounded mb-6"></div>
+                            <div class="grid grid-cols-3 gap-3">
+                                <div class="bg-slate-700 h-20 rounded-2xl"></div>
+                                <div class="bg-emerald-400/30 h-20 rounded-2xl flex items-center justify-center text-2xl font-semibold">↑24%</div>
+                                <div class="bg-slate-700 h-20 rounded-2xl"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center text-xs text-slate-500 tracking-widest">LIVE DASHBOARD PREVIEW</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400">
+            <span class="text-xs tracking-widest">SCROLL TO EXPLORE</span>
+            <i class="fas fa-chevron-down animate-bounce"></i>
+        </div>
+    </section>
+
+    <!-- About, Skills, Experience sections remain unchanged (same as your last version) -->
+    <!-- About -->
+    <section id="about" class="py-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-16 items-center">
+                <div class="md:col-span-5 reveal">
+                    <div class="sticky top-28">
+                        <div class="inline text-blue-400 text-sm tracking-[3px] font-mono">CHAPTER 01</div>
+                        <h2 class="text-5xl heading-font font-semibold mt-3">About Me</h2>
+                        <p class="mt-6 text-slate-400">Data enthusiast with a passion for clarity and impact.</p>
+                    </div>
+                </div>
+                <div class="md:col-span-7 space-y-8 text-lg leading-relaxed text-slate-300 reveal">
+                    <p>Detail-oriented and analytical aspiring Junior Data Analyst with hands-on experience in data collection, validation, reporting, and database management.</p>
+                    <p>Currently gaining real-world experience through the Special Program for Employment of Students (SPES) while pursuing my Bachelor of Science in Information Technology at City College of Calamba.</p>
+                    <div class="grid grid-cols-2 gap-8 pt-6">
+                        <div>
+                            <div class="text-blue-400 text-sm font-medium">LOCATION</div>
+                            <div class="text-xl">Calamba City, Laguna</div>
+                        </div>
+                        <div>
+                            <div class="text-blue-400 text-sm font-medium">CURRENTLY</div>
+                            <div class="text-xl">Available for Junior Roles / Internships</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <div class="inline text-blue-400 text-sm tracking-[3px] font-mono">CHAPTER 02</div>
+                <h2 class="text-5xl heading-font font-semibold mt-3">Technical Skills</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 card-hover reveal">
+                    <h3 class="text-2xl font-semibold mb-8 flex items-center gap-3"><i class="fas fa-code"></i> Core Languages</h3>
+                    <div class="space-y-7">
+                        <div><div class="flex justify-between text-sm mb-2"><span>Python</span><span class="text-emerald-400">90%</span></div><div class="bg-slate-800 h-2.5 rounded-full overflow-hidden"><div class="bg-blue-500 h-2.5 rounded-full w-[90%]"></div></div></div>
+                        <div><div class="flex justify-between text-sm mb-2"><span>SQL</span><span class="text-emerald-400">85%</span></div><div class="bg-slate-800 h-2.5 rounded-full overflow-hidden"><div class="bg-blue-500 h-2.5 rounded-full w-[85%]"></div></div></div>
+                        <div><div class="flex justify-between text-sm mb-2"><span>Excel / Google Sheets</span><span class="text-emerald-400">95%</span></div><div class="bg-slate-800 h-2.5 rounded-full overflow-hidden"><div class="bg-blue-500 h-2.5 rounded-full w-[95%]"></div></div></div>
+                    </div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 card-hover reveal">
+                    <h3 class="text-2xl font-semibold mb-8 flex items-center gap-3"><i class="fas fa-chart-pie"></i> Visualization</h3>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-slate-800/70 p-6 rounded-3xl hover:bg-slate-700 transition-colors">Tableau</div>
+                        <div class="bg-slate-800/70 p-6 rounded-3xl hover:bg-slate-700 transition-colors">Power BI</div>
+                        <div class="bg-slate-800/70 p-6 rounded-3xl hover:bg-slate-700 transition-colors col-span-2">Matplotlib / Seaborn</div>
+                    </div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 card-hover reveal">
+                    <h3 class="text-2xl font-semibold mb-8 flex items-center gap-3"><i class="fas fa-tools"></i> Other Tools</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="px-6 py-3 bg-slate-800 rounded-3xl text-sm">Database Management</div>
+                        <div class="px-6 py-3 bg-slate-800 rounded-3xl text-sm">Git &amp; GitHub</div>
+                        <div class="px-6 py-3 bg-slate-800 rounded-3xl text-sm">HTML/CSS/JS</div>
+                        <div class="px-6 py-3 bg-slate-800 rounded-3xl text-sm">Data Cleaning</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <div class="inline text-blue-400 text-sm tracking-[3px] font-mono">CHAPTER 03</div>
+                <h2 class="text-5xl heading-font font-semibold mt-3">Featured Projects</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8" id="projectsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Scrollable Project Modal -->
+    <div id="projectModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
+        <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-2xl w-full max-h-[92vh] flex flex-col overflow-hidden">
+            <div class="relative flex-shrink-0">
+                <img id="modalImage" class="w-full h-64 object-cover" alt="Project Image">
+                <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 bg-black/70 hover:bg-black text-white rounded-full flex items-center justify-center transition text-xl font-light">✕</button>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto p-8 custom-scroll">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <span id="modalCategory" class="inline-block text-xs font-mono bg-blue-500/10 text-blue-400 px-4 py-1.5 rounded-full"></span>
+                        <h3 id="modalTitle" class="text-3xl font-semibold heading-font mt-3"></h3>
+                    </div>
+                </div>
+                <p id="modalDescription" class="text-slate-300 leading-relaxed text-[17px]"></p>
+                
+                <div class="mt-8">
+                    <h4 class="text-sm uppercase tracking-widest text-slate-400 mb-3">Tech Stack</h4>
+                    <div id="modalTech" class="flex flex-wrap gap-3"></div>
+                </div>
+                
+                <div class="mt-8 pt-8 border-t border-slate-700">
+                    <h4 class="text-sm uppercase tracking-widest text-slate-400 mb-4">Key Highlights</h4>
+                    <ul id="modalHighlights" class="space-y-3 text-slate-300"></ul>
+                </div>
+            </div>
+            
+            <div class="flex gap-4 p-8 pt-6 border-t border-slate-700 flex-shrink-0 bg-slate-900">
+                <button onclick="closeModal()" class="flex-1 py-4 border border-slate-600 hover:bg-slate-800 rounded-3xl font-medium transition">Close</button>
+                <a id="modalLink" href="#" target="_blank" class="flex-1 py-4 bg-blue-600 hover:bg-blue-500 text-center rounded-3xl font-semibold transition flex items-center justify-center gap-2">View Project <span class="text-lg">→</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Experience -->
+    <section id="experience" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <div class="inline text-blue-400 text-sm tracking-[3px] font-mono">CHAPTER 04</div>
+                <h2 class="text-5xl heading-font font-semibold mt-3">Experience</h2>
+            </div>
+            <div class="max-w-4xl mx-auto space-y-16">
+                <div class="grid md:grid-cols-12 gap-8 items-start reveal">
+                    <div class="md:col-span-4">
+                        <div class="text-slate-400">June 2024 — Present</div>
+                        <div class="text-xl font-semibold mt-1">Enumerator (SPES)</div>
+                        <div class="text-blue-400">Calamba City Hall</div>
+                    </div>
+                    <div class="md:col-span-8 text-slate-300">
+                        <ul class="list-disc list-outside space-y-4 pl-6">
+                            <li>Collected, verified, and maintained data across multiple city programs (Agriculture, PDAO, DepEd).</li>
+                            <li>Conducted field surveys and interviews for accurate demographic information.</li>
+                            <li>Organized and encoded datasets to support city planning and reporting needs.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-12 gap-8 items-start reveal">
+                    <div class="md:col-span-4">
+                        <div class="text-slate-400">Jan 2025 — Dec 2025</div>
+                        <div class="text-xl font-semibold mt-1">I-SEE YOU: Digital Eye Monitoring System</div>
+                        <div class="text-blue-400">City College of Calamba • Capstone</div>
+                    </div>
+                    <div class="md:col-span-8 text-slate-300">
+                        <ul class="list-disc list-outside space-y-4 pl-6">
+                            <li>Designed and developed a full digital monitoring system for eye examination records.</li>
+                            <li>Built and managed a structured database for secure patient data storage and retrieval.</li>
+                            <li>Awarded "Most Innovative Project" and "Best Overall Project" at DCI Week Tech Expo 2026.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 bg-slate-900 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="mb-16">
+                <h2 class="text-6xl heading-font font-semibold mb-4">Let's Connect</h2>
+                <p class="text-slate-400 text-lg max-w-md mx-auto">
+                    Open to junior data analyst roles, collaborations, or just a conversation about data & insights.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="mailto:davidandreifornis@gmail.com" class="group bg-slate-800 hover:bg-gradient-to-br hover:from-slate-800 hover:to-slate-700 border border-slate-700 rounded-3xl p-10 transition-all card-hover flex flex-col items-center">
+                    <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-envelope text-4xl text-blue-400"></i>
+                    </div>
+                    <div class="font-semibold text-xl mb-1">Email Me</div>
+                    <div class="text-blue-400 text-sm font-medium">davidandreifornis@gmail.com</div>
+                    <div class="text-xs text-slate-500 mt-6">Quick Response</div>
+                </a>
+
+                <a href="https://linkedin.com/in/davidandreifornis" target="_blank" class="group bg-slate-800 hover:bg-gradient-to-br hover:from-slate-800 hover:to-slate-700 border border-slate-700 rounded-3xl p-10 transition-all card-hover flex flex-col items-center">
+                    <div class="w-16 h-16 bg-[#0A66C2]/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fab fa-linkedin text-4xl text-[#0A66C2]"></i>
+                    </div>
+                    <div class="font-semibold text-xl mb-1">LinkedIn</div>
+                    <div class="text-slate-400 text-sm">Professional Profile</div>
+                    <div class="mt-auto pt-8 text-xs text-blue-400 font-medium group-hover:underline">Connect →</div>
+                </a>
+
+                <a href="https://github.com/davidandreifornis-lgtm/davidandreifornis-lgtm" target="_blank" class="group bg-slate-800 hover:bg-gradient-to-br hover:from-slate-800 hover:to-slate-700 border border-slate-700 rounded-3xl p-10 transition-all card-hover flex flex-col items-center">
+                    <div class="w-16 h-16 bg-gray-700/30 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fab fa-github text-4xl text-white"></i>
+                    </div>
+                    <div class="font-semibold text-xl mb-1">GitHub</div>
+                    <div class="text-slate-400 text-sm">View My Projects</div>
+                    <div class="mt-auto pt-8 text-xs text-blue-400 font-medium group-hover:underline">Browse Code →</div>
+                </a>
+            </div>
+
+            <div class="mt-20 flex flex-col md:flex-row items-center justify-center gap-8 text-sm">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-map-marker-alt text-slate-400"></i>
+                    <span class="text-slate-400">Calamba City, Laguna, Philippines</span>
+                </div>
+                <div class="hidden md:block w-px h-5 bg-slate-700"></div>
+                <div class="text-slate-400">
+                    Open to <span class="text-blue-400 font-medium">remote</span> and <span class="text-blue-400 font-medium">on-site</span> opportunities
+                </div>
+            </div>
+
+            <div class="mt-16 text-xs text-slate-500">
+                © 2026 David Andrei Fornis • Built with passion for data analytics
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const projects = [
+            {
+                id: 1,
+                title: "I-SEE YOU: Digital Eye Monitoring System",
+                category: "Full-Stack • Database",
+                image: "https://picsum.photos/id/201/800/600",
+                description: "A comprehensive digital monitoring system designed to streamline patient eye examination records at the City College of Calamba. The system features secure patient data management, real-time tracking, and intuitive dashboards.",
+                tech: ["Python", "SQL", "MySQL", "HTML/CSS/JS", "Database Design"],
+                highlights: [
+                    "Awarded 'Most Innovative Project' and 'Best Overall Project' at DCI Week Tech Expo 2026",
+                    "Built a structured relational database for secure patient data storage",
+                    "Implemented user authentication and role-based access",
+                    "Created interactive dashboards for medical staff"
+                ],
+                link: "https://github.com/davidandreifornis-lgtm/davidandreifornis-lgtm"
+            },
+            {
+                id: 2,
+                title: "Data Management & Explanatory Analysis",
+                category: "Data Analysis",
+                image: "https://picsum.photos/id/180/800/600",
+                description: "Designed and implemented an end-to-end data management system. Performed data collection, cleaning, validation, and exploratory data analysis (EDA) to improve data quality, uncover trends, and generate actionable insights that supported informed decision-making across multiple city departments.",
+                tech: ["Excel", "SQL", "Python", "Power BI", "Data Visualization"],
+                highlights: [
+                    "Collected, cleaned, and validated large datasets",
+                    "Performed exploratory data analysis (EDA) to uncover trends and ensure data integrity",
+                    "Developed analytical reports and visualizations to support operational and strategic decisions",
+                    "Improved data quality by identifying inconsistencies, removing errors, and standardizing records"
+                ],
+                link: "https://github.com/davidandreifornis-lgtm/davidandreifornis-lgtm"
+            }
+        ];
+
+        function renderProjects() {
+            const container = document.getElementById('projectsGrid');
+            container.innerHTML = projects.map(p => `
+                <div onclick="showProject(${p.id})" class="project-card bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden cursor-pointer card-hover group">
+                    <div class="h-64 bg-cover bg-center relative" style="background-image: url('${p.image}')">
+                        <div class="absolute top-4 right-4 bg-black/70 text-xs px-3 py-1 rounded-full">${p.category}</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-semibold group-hover:text-blue-400 transition-colors">${p.title}</h3>
+                        <p class="mt-3 text-slate-400 line-clamp-3">${p.description}</p>
+                        <div class="flex flex-wrap gap-2 mt-6">
+                            ${p.tech.slice(0, 3).map(t => `<span class="text-[10px] bg-slate-800 px-3 py-1 rounded-full">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showProject(id) {
+            const project = projects.find(p => p.id === id);
+            if (!project) return;
+
+            document.getElementById('modalImage').src = project.image;
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalCategory').textContent = project.category;
+            document.getElementById('modalDescription').textContent = project.description;
+            document.getElementById('modalLink').href = project.link;
+
+            document.getElementById('modalTech').innerHTML = project.tech.map(t => `
+                <span class="px-5 py-2 bg-slate-800 rounded-3xl text-sm">${t}</span>
+            `).join('');
+
+            document.getElementById('modalHighlights').innerHTML = project.highlights.map(h => `
+                <li class="flex gap-3"><span class="text-emerald-400 mt-1">•</span><span>${h}</span></li>
+            `).join('');
+
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        function observeReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+            reveals.forEach(reveal => observer.observe(reveal));
+        }
+
+        window.onload = function() {
+            renderProjects();
+            observeReveal();
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.getElementById(this.getAttribute('href').substring(1));
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // Close modal on outside click
+            document.getElementById('projectModal').addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
+            });
+
+            // Escape key support
+            document.addEventListener('keydown', (e) => {
+                if (e.key === "Escape") closeModal();
+            });
+        };
+    </script>
+</body>
+</html>
