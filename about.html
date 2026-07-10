@@ -19,87 +19,247 @@
             font-size: 1.1rem;
             line-height: 1.75;
         }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: rgb(59 130 246);
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-line {
+            background: linear-gradient(to bottom, rgba(59,130,246,0.6), rgba(59,130,246,0.05));
+        }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-200">
+<body class="bg-slate-950 text-slate-200 overflow-x-hidden">
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-lg border-b border-slate-800">
-        <div class="max-w-4xl mx-auto px-6 py-6 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-semibold heading-font tracking-tight">David Fornis</a>
-            <div class="flex gap-8 text-sm font-medium">
-                <a href="index.html" class="hover:text-blue-400 transition-colors">Home</a>
-                <a href="about.html" class="text-blue-400">About</a>
-                <a href="index.html#projects" class="hover:text-blue-400 transition-colors">Projects</a>
-                <a href="index.html#contact" class="hover:text-blue-400 transition-colors">Contact</a>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-950/70 backdrop-blur-xl border-b border-slate-800/60 shadow-[0_1px_0_0_rgba(59,130,246,0.15)]">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-4 sm:py-5 flex justify-between items-center">
+
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="group flex items-center gap-2 text-xl sm:text-2xl font-semibold heading-font tracking-tight">
+                    <span class="w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_10px_2px_rgba(96,165,250,0.6)] group-hover:scale-125 transition-transform"></span>
+                    <span class="bg-gradient-to-r from-slate-100 to-slate-300 bg-clip-text text-transparent group-hover:from-blue-400 group-hover:to-cyan-300 transition-all duration-300">
+                        David Fornis
+                    </span>
+                </a>
+            </div>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-8 lg:gap-10 text-sm font-medium">
+                <a href="index.html" class="nav-link relative py-1 text-slate-300 hover:text-blue-400 transition-colors group">
+                    Home
+                    <span class="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-gradient-to-r from-blue-400 to-cyan-300 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="about.html" class="nav-link relative py-1 text-blue-400 group">
+                    About
+                    <span class="absolute left-0 -bottom-0.5 w-full h-[2px] bg-gradient-to-r from-blue-400 to-cyan-300"></span>
+                </a>
+                <a href="index.html#skills" class="nav-link relative py-1 text-slate-300 hover:text-blue-400 transition-colors group">
+                    Skills
+                    <span class="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-gradient-to-r from-blue-400 to-cyan-300 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="index.html#projects" class="nav-link relative py-1 text-slate-300 hover:text-blue-400 transition-colors group">
+                    Projects
+                    <span class="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-gradient-to-r from-blue-400 to-cyan-300 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="index.html#experience" class="nav-link relative py-1 text-slate-300 hover:text-blue-400 transition-colors group">
+                    Experience
+                    <span class="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-gradient-to-r from-blue-400 to-cyan-300 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="index.html#contact" class="nav-link relative py-1 text-slate-300 hover:text-blue-400 transition-colors group">
+                    Contact
+                    <span class="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-gradient-to-r from-blue-400 to-cyan-300 group-hover:w-full transition-all duration-300"></span>
+                </a>
+            </div>
+
+            <!-- Icons / Mobile Toggle -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <a href="https://linkedin.com/in/davidandreifornis" target="_blank"
+                   class="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl text-slate-300 hover:text-blue-400 hover:bg-slate-800/80 hover:-translate-y-0.5 transition-all duration-200">
+                    <i class="fab fa-linkedin text-lg sm:text-xl"></i>
+                </a>
+                <a href="https://github.com/davidandreifornis-lgtm" target="_blank"
+                   class="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl text-slate-300 hover:text-blue-400 hover:bg-slate-800/80 hover:-translate-y-0.5 transition-all duration-200">
+                    <i class="fab fa-github text-lg sm:text-xl"></i>
+                </a>
+                <button onclick="toggleMobileMenu()"
+                        class="md:hidden p-2.5 sm:p-3 rounded-xl sm:rounded-2xl text-slate-200 hover:bg-slate-800/80 active:scale-95 transition-all duration-200">
+                    <i class="fas fa-bars text-lg sm:text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Sidebar Backdrop -->
+        <div id="mobileBackdrop" onclick="toggleMobileMenu()"
+             class="md:hidden fixed inset-0 opacity-0 pointer-events-none transition-opacity duration-300"
+             style="background-color: rgba(0,0,0,0.6); z-index: 55;">
+        </div>
+
+        <!-- Mobile Sidebar Menu -->
+        <div id="mobileMenu"
+             class="md:hidden fixed top-0 right-0 h-full transition-transform duration-300 ease-out"
+             style="width: 78%; max-width: 320px; background-color: #020617; z-index: 60; border-left: 1px solid #1e293b; box-shadow: -10px 0 40px rgba(0,0,0,0.6); transform: translateX(100%);">
+
+            <div class="flex items-center justify-between px-6 py-5 border-b border-slate-800/70" style="background-color: #020617;">
+                <span class="text-slate-100 font-semibold heading-font">Menu</span>
+                <button onclick="toggleMobileMenu()"
+                        class="p-2 rounded-xl text-slate-300 hover:text-blue-400 hover:bg-slate-800/80 active:scale-95 transition-all duration-200 text-2xl leading-none">
+                    &times;
+                </button>
+            </div>
+
+            <div class="flex flex-col px-6 py-4 text-base font-medium" style="background-color: #020617;">
+                <a href="index.html" onclick="toggleMobileMenu()"
+                   class="flex items-center justify-between py-4 border-b border-slate-800/70 text-slate-200 hover:text-blue-400 hover:pl-2 transition-all duration-200">
+                    Home <span class="text-slate-600">›</span>
+                </a>
+                <a href="about.html" onclick="toggleMobileMenu()"
+                   class="flex items-center justify-between py-4 border-b border-slate-800/70 text-blue-400 hover:pl-2 transition-all duration-200">
+                    About <span class="text-slate-600">›</span>
+                </a>
+                <a href="index.html#skills" onclick="toggleMobileMenu()"
+                   class="flex items-center justify-between py-4 border-b border-slate-800/70 text-slate-200 hover:text-blue-400 hover:pl-2 transition-all duration-200">
+                    Skills <span class="text-slate-600">›</span>
+                </a>
+                <a href="index.html#projects" onclick="toggleMobileMenu()"
+                   class="flex items-center justify-between py-4 border-b border-slate-800/70 text-slate-200 hover:text-blue-400 hover:pl-2 transition-all duration-200">
+                    Projects <span class="text-slate-600">›</span>
+                </a>
+                <a href="index.html#experience" onclick="toggleMobileMenu()"
+                   class="flex items-center justify-between py-4 border-b border-slate-800/70 text-slate-200 hover:text-blue-400 hover:pl-2 transition-all duration-200">
+                    Experience <span class="text-slate-600">›</span>
+                </a>
+                <a href="index.html#contact" onclick="toggleMobileMenu()"
+                   class="flex items-center justify-between py-4 text-slate-200 hover:text-blue-400 hover:pl-2 transition-all duration-200">
+                    Contact <span class="text-slate-600">›</span>
+                </a>
             </div>
         </div>
     </nav>
 
     <div class="max-w-4xl mx-auto px-6 pt-32 pb-24">
-        <h1 class="text-6xl heading-font font-semibold tracking-tighter mb-2">About Me</h1>
-        <p class="text-2xl text-slate-400">Aspiring Junior Data Analyst</p>
 
-        <div class="prose prose-invert mt-16 max-w-none text-lg">
+        <div class="reveal active">
+            <div class="inline-flex items-center gap-2 bg-slate-800/80 backdrop-blur-sm text-blue-400 text-sm font-medium px-5 py-2 rounded-3xl border border-blue-500/30 mb-6">
+                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                OPEN TO JUNIOR DATA ANALYST ROLES
+            </div>
+            <h1 class="text-6xl heading-font font-semibold tracking-tighter mb-2">About Me</h1>
+            <p class="text-2xl text-slate-400">Junior Data Analyst, in progress</p>
+        </div>
+
+        <div class="prose prose-invert mt-16 max-w-none text-lg reveal active">
             <p class="text-2xl leading-relaxed">
-                Hi, I'm David. I'm a detail-oriented and analytical aspiring Junior Data Analyst with real-world experience 
-                in data collection, validation, reporting, and database management.
+                Hi, I'm David — I turn raw, messy data into information people can actually act on. My background 
+                is hands-on: real fieldwork, real databases, real reporting deadlines.
             </p>
             
             <p>
-                Currently, I work as an Enumerator under the Special Program for Employment of Students (SPES) at Calamba City Hall, 
-                where I collect, verify, and manage data across multiple city programs. At the same time, I'm completing my 
-                Bachelor of Science in Information Technology at City College of Calamba.
+                I worked as an Enumerator under the Special Program for Employment of Students (SPES) at Calamba 
+                City Hall, where I collect, verify, and manage data across multiple city programs. Alongside that, I'm 
+                finishing my Bachelor of Science in Information Technology at City College of Calamba.
             </p>
 
             <p>
-                My passion lies in transforming raw data into clear, actionable insights. Whether through field data gathering, 
-                building structured databases, or developing digital systems, I focus on delivering accurate and useful information 
-                that supports better decision-making.
+                I care about accuracy first — a clean, validated dataset beats a flashy dashboard built on bad numbers. 
+                Whether I'm gathering data in the field, structuring a database, or building a digital system from scratch, 
+                the goal is the same: information people can trust enough to act on.
             </p>
+        </div>
+
+        <!-- Quick Facts -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 reveal active">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-center">
+                <div class="text-blue-400 text-2xl mb-1"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="text-xs text-slate-400">Calamba City, Laguna</div>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-center">
+                <div class="text-blue-400 text-2xl mb-1"><i class="fas fa-graduation-cap"></i></div>
+                <div class="text-xs text-slate-400">BS Information Technology</div>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-center">
+                <div class="text-blue-400 text-2xl mb-1"><i class="fas fa-briefcase"></i></div>
+                <div class="text-xs text-slate-400">Enumerator, SPES</div>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-center">
+                <div class="text-blue-400 text-2xl mb-1"><i class="fas fa-house-laptop"></i></div>
+                <div class="text-xs text-slate-400">Remote or On-Site</div>
+            </div>
         </div>
 
         <hr class="my-20 border-slate-800">
 
         <!-- Timeline -->
-        <h2 class="text-3xl heading-font font-semibold mb-10">Journey</h2>
+        <div class="reveal">
+            <div class="inline text-blue-400 text-sm tracking-[3px] font-mono">A TIMELINE</div>
+            <h2 class="text-3xl heading-font font-semibold mt-2 mb-12">My Journey So Far</h2>
+        </div>
         
-        <div class="space-y-16">
-            <div class="grid md:grid-cols-12 gap-8">
-                <div class="md:col-span-4 text-slate-400">
-                    <div>June 2024 — Present</div>
+        <div class="relative space-y-16 reveal">
+            <div class="absolute left-[7px] md:left-[7px] top-2 bottom-2 w-px timeline-line hidden sm:block"></div>
+
+            <div class="grid md:grid-cols-12 gap-8 relative">
+                <div class="hidden sm:block absolute left-0 top-1.5 w-3.5 h-3.5 rounded-full bg-blue-400 shadow-[0_0_10px_2px_rgba(96,165,250,0.5)]"></div>
+                <div class="md:col-span-4 text-slate-400 sm:pl-8">
+                    <div class="text-sm tracking-wide">June 2024 — July 2026</div>
                 </div>
-                <div class="md:col-span-8">
+                <div class="md:col-span-8 sm:pl-2">
                     <div class="font-semibold text-xl">Enumerator (SPES)</div>
-                    <div class="text-blue-400">Calamba City Hall</div>
+                    <div class="text-blue-400 text-sm mt-0.5">Calamba City Hall</div>
                     <p class="mt-3 text-slate-300">
-                        Collect, verify, and maintain data across Agriculture, PDAO, and DepEd programs. Conduct field surveys and interviews to support city planning and reporting.
+                        Collect, verify, and maintain data across Agriculture, PDAO, and DepEd programs. Run field 
+                        surveys and interviews that feed directly into city planning and reporting.
                     </p>
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-12 gap-8">
-                <div class="md:col-span-4 text-slate-400">
-                    <div>Jan 2025 — Dec 2025</div>
+            <div class="grid md:grid-cols-12 gap-8 relative">
+                <div class="hidden sm:block absolute left-0 top-1.5 w-3.5 h-3.5 rounded-full bg-blue-400 shadow-[0_0_10px_2px_rgba(96,165,250,0.5)]"></div>
+                <div class="md:col-span-4 text-slate-400 sm:pl-8">
+                    <div class="text-sm tracking-wide">Jan 2025 — Dec 2025</div>
                 </div>
-                <div class="md:col-span-8">
+                <div class="md:col-span-8 sm:pl-2">
                     <div class="font-semibold text-xl">I-SEE YOU: Digital Eye Monitoring System</div>
-                    <div class="text-blue-400">City College of Calamba • Capstone Project</div>
+                    <div class="text-blue-400 text-sm mt-0.5">City College of Calamba • Capstone Project</div>
                     <p class="mt-3 text-slate-300">
-                        Designed and developed a digital patient monitoring system with a structured database. 
-                        Awarded <strong>Most Innovative Project</strong> and <strong>Best Overall Project</strong> at DCI Week Tech Expo 2026.
+                        Designed and built a digital patient monitoring system on a structured relational database. 
+                        Won <strong>Most Innovative Project</strong> and <strong>Best Overall Project</strong> at 
+                        DCI Week Tech Expo 2026.
                     </p>
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-12 gap-8">
-                <div class="md:col-span-4 text-slate-400">
-                    <div>Oct 2023 — Present</div>
+            <div class="grid md:grid-cols-12 gap-8 relative">
+                <div class="hidden sm:block absolute left-0 top-1.5 w-3.5 h-3.5 rounded-full bg-blue-400 shadow-[0_0_10px_2px_rgba(96,165,250,0.5)]"></div>
+                <div class="md:col-span-4 text-slate-400 sm:pl-8">
+                    <div class="text-sm tracking-wide">Oct 2023 — Present</div>
                 </div>
-                <div class="md:col-span-8">
+                <div class="md:col-span-8 sm:pl-2">
                     <div class="font-semibold text-xl">Bachelor of Science in Information Technology</div>
-                    <div class="text-blue-400">City College of Calamba</div>
+                    <div class="text-blue-400 text-sm mt-0.5">City College of Calamba</div>
                     <p class="mt-3 text-slate-300 text-sm">
-                        Relevant Coursework: Database Management Systems, Statistics & Probability, Data Structures, Systems Analysis & Design
+                        Relevant coursework: Database Management Systems, Statistics &amp; Probability, Data 
+                        Structures, Systems Analysis &amp; Design.
                     </p>
                 </div>
             </div>
@@ -108,26 +268,36 @@
         <hr class="my-20 border-slate-800">
 
         <!-- Certifications -->
-        <h2 class="text-3xl heading-font font-semibold mb-8">Certifications</h2>
-        <ul class="space-y-6 text-lg">
-            <li class="flex gap-4">
-                <span class="text-emerald-400 font-light">✓</span>
+        <div class="reveal">
+            <div class="inline text-blue-400 text-sm tracking-[3px] font-mono">PROOF OF WORK</div>
+            <h2 class="text-3xl heading-font font-semibold mt-2 mb-8">Certifications</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4 reveal">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex items-start gap-4 hover:border-blue-500/40 transition-colors">
+                <span class="w-9 h-9 flex-shrink-0 rounded-full bg-emerald-400/10 text-emerald-400 flex items-center justify-center">
+                    <i class="fas fa-check text-sm"></i>
+                </span>
                 <div>
-                    Cisco Certificate of Course Completion — Data Analytics Essentials
+                    <div class="font-medium text-slate-100">Data Analytics Essentials</div>
+                    <div class="text-sm text-slate-400 mt-0.5">Cisco — Certificate of Course Completion</div>
                 </div>
-            </li>
-            <li class="flex gap-4">
-                <span class="text-emerald-400 font-light">✓</span>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex items-start gap-4 hover:border-blue-500/40 transition-colors">
+                <span class="w-9 h-9 flex-shrink-0 rounded-full bg-emerald-400/10 text-emerald-400 flex items-center justify-center">
+                    <i class="fas fa-check text-sm"></i>
+                </span>
                 <div>
-                    freeCodeCamp — Python Developer Certification
+                    <div class="font-medium text-slate-100">Python Developer Certification</div>
+                    <div class="text-sm text-slate-400 mt-0.5">freeCodeCamp</div>
                 </div>
-            </li>
-        </ul>
+            </div>
+        </div>
 
-        <div class="mt-24 text-center">
+        <div class="mt-24 text-center reveal">
+            <p class="text-slate-400 mb-6">Think I'd be a good fit for your team?</p>
             <a href="index.html#contact" 
-               class="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 transition px-10 py-5 rounded-3xl text-lg font-medium">
-                Get in touch with me
+               class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-indigo-500 transition-all px-10 py-5 rounded-3xl text-lg font-medium shadow-lg">
+                Let's Talk
                 <i class="fas fa-arrow-right"></i>
             </a>
         </div>
@@ -138,7 +308,37 @@
     </footer>
 
     <script>
-        // Simple mobile menu if needed (optional)
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const backdrop = document.getElementById('mobileBackdrop');
+            const isOpen = menu.style.transform === 'translateX(0%)';
+
+            if (isOpen) {
+                menu.style.transform = 'translateX(100%)';
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                backdrop.classList.remove('opacity-100');
+                document.body.style.overflow = '';
+            } else {
+                menu.style.transform = 'translateX(0%)';
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function observeReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+            reveals.forEach(reveal => observer.observe(reveal));
+        }
+
+        window.onload = function() {
+            observeReveal();
+        };
     </script>
 </body>
 </html>
