@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects — David Andrei Fornis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
+        
+        body { font-family: 'Inter', system_ui, sans-serif; }
+        .heading-font { font-family: 'Space Grotesk', sans-serif; }
+        
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200">
+    
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-lg border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-semibold heading-font tracking-tight">David Fornis</a>
+            
+            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
+                <a href="index.html" class="hover:text-blue-400">Home</a>
+                <a href="about.html" class="hover:text-blue-400">About</a>
+                <a href="projects.html" class="text-blue-400">Projects</a>
+                <a href="index.html#contact" class="hover:text-blue-400">Contact</a>
+            </div>
+            
+            <button onclick="toggleMobileMenu()" class="md:hidden p-3 hover:bg-slate-800 rounded-2xl">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="pt-28 pb-24 max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h1 class="text-6xl heading-font font-semibold tracking-tighter">Featured Projects</h1>
+            <p class="text-slate-400 mt-4 text-xl">Showcasing my work in data, programming, and web development</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10" id="projectsGrid"></div>
+    </div>
+
+    <footer class="py-12 border-t border-slate-800 text-center text-slate-500 text-sm">
+        <p>© 2026 David Andrei G. Fornis</p>
+    </footer>
+
+    <script>
+        const projects = [
+            {
+                title: "I-SEE YOU: Digital Eye Monitoring System",
+                category: "Full-Stack • Database",
+                description: "A digital monitoring system for patient eye examination records with structured database management. Awarded Most Innovative & Best Overall Project at DCI Week Tech Expo 2026.",
+                tech: ["Python", "SQL", "MySQL", "HTML/CSS/JS"],
+                link: "#"
+            },
+            {
+                title: "Data Management & Explanatory Analysis",
+                category: "Data Analytics",
+                description: "End-to-end data management system including collection, cleaning, validation, and exploratory data analysis to support city decision-making.",
+                tech: ["Excel", "SQL", "Python", "Power BI"],
+                link: "#"
+            }
+        ];
+
+        function renderProjects() {
+            const container = document.getElementById('projectsGrid');
+            container.innerHTML = projects.map(p => `
+                <div class="project-card bg-slate-900 border border-slate-700 rounded-3xl overflow-hidden">
+                    <div class="h-64 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center text-6xl">
+                        📊
+                    </div>
+                    <div class="p-8">
+                        <div class="text-blue-400 text-xs font-medium tracking-widest mb-2">${p.category}</div>
+                        <h3 class="text-2xl font-semibold mb-4">${p.title}</h3>
+                        <p class="text-slate-400 mb-6">${p.description}</p>
+                        <div class="flex flex-wrap gap-2">
+                            ${p.tech.map(t => `<span class="text-xs bg-slate-800 px-4 py-2 rounded-3xl">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleMobileMenu() {
+            // Add mobile menu logic if needed
+            alert("Mobile menu coming soon!");
+        }
+
+        window.onload = renderProjects;
+    </script>
+</body>
+</html>
