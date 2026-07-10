@@ -1,102 +1,220 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects — David Andrei Fornis</title>
+    <title>All Projects | David Andrei G. Fornis</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
-        
-        body { font-family: 'Inter', system_ui, sans-serif; }
-        .heading-font { font-family: 'Space Grotesk', sans-serif; }
-        
-        .project-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#64748b',
+                    }
+                }
+            }
         }
-        .project-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
-        }
-    </style>
+    </script>
 </head>
-<body class="bg-slate-950 text-slate-200">
-    
-    <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-lg border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-semibold heading-font tracking-tight">David Fornis</a>
-            
-            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
-                <a href="index.html" class="hover:text-blue-400">Home</a>
-                <a href="about.html" class="hover:text-blue-400">About</a>
-                <a href="projects.html" class="text-blue-400">Projects</a>
-                <a href="index.html#contact" class="hover:text-blue-400">Contact</a>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md shadow-sm border-b">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center text-primary font-bold group">
+                <i class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform"></i>
+                Back to Home
+            </a>
+            <div class="flex items-center space-x-4">
+                <a href="https://github.com/davidandreifornis-lgtm" target="_blank" class="text-slate-600 hover:text-primary transition"><i class="fab fa-github text-xl"></i></a>
             </div>
-            
-            <button onclick="toggleMobileMenu()" class="md:hidden p-3 hover:bg-slate-800 rounded-2xl">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
         </div>
     </nav>
 
-    <div class="pt-28 pb-24 max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16">
-            <h1 class="text-6xl heading-font font-semibold tracking-tighter">Featured Projects</h1>
-            <p class="text-slate-400 mt-4 text-xl">Showcasing my work in data, programming, and web development</p>
+    <!-- Header -->
+    <header class="pt-32 pb-12 px-4 bg-white border-b">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-slate-900 italic">Project Catalog</h1>
+            <p class="text-lg text-secondary max-w-2xl mx-auto">
+                Exploring data patterns and building digital systems to drive efficiency.
+            </p>
         </div>
+    </header>
 
-        <div class="grid md:grid-cols-2 gap-10" id="projectsGrid"></div>
-    </div>
+    <!-- Project Filter -->
+    <section class="py-8 bg-white sticky top-[73px] z-40 border-b shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 flex flex-wrap justify-center gap-3">
+            <button onclick="filterProjects('all')" class="filter-btn active bg-primary text-white px-6 py-2 rounded-full text-sm font-bold shadow-md transition">All Projects</button>
+            <button onclick="filterProjects('sql')" class="filter-btn bg-white border border-slate-200 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-100 transition">SQL / DBMS</button>
+            <button onclick="filterProjects('python')" class="filter-btn bg-white border border-slate-200 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-100 transition">Python</button>
+            <button onclick="filterProjects('viz')" class="filter-btn bg-white border border-slate-200 px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-100 transition">Visualization / Excel</button>
+        </div>
+    </section>
 
-    <footer class="py-12 border-t border-slate-800 text-center text-slate-500 text-sm">
-        <p>© 2026 David Andrei G. Fornis</p>
+    <!-- Projects Grid -->
+    <main class="py-16 px-4">
+        <div id="projects-grid" class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- 1. I-SEE YOU -->
+            <div class="project-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col hover:shadow-xl transition-all" data-category="sql">
+                <div class="h-40 bg-primary flex items-center justify-center text-white relative">
+                    <span class="absolute top-3 left-3 bg-yellow-400 text-slate-900 text-[10px] font-black px-2 py-1 rounded">AWARD WINNER</span>
+                    <i class="fas fa-eye text-5xl opacity-40"></i>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="font-bold text-lg mb-2">I-SEE YOU: Digital Monitoring</h3>
+                    <p class="text-slate-600 text-sm mb-4">Patient record system and database management for Montes-Oliva Optical Clinic.</p>
+                    <div class="mt-auto pt-4 border-t flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">SQL Server</span>
+                        <a href="https://github.com/davidandreifornis-lgtm" target="_blank" class="text-primary font-bold text-xs hover:underline">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Agricultural Data Cleaning -->
+            <div class="project-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col hover:shadow-xl transition-all" data-category="python">
+                <div class="h-40 bg-emerald-600 flex items-center justify-center text-white">
+                    <i class="fas fa-seedling text-5xl opacity-40"></i>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="font-bold text-lg mb-2">Agricultural Survey Cleaner</h3>
+                    <p class="text-slate-600 text-sm mb-4">Python script developed during SPES to automate the cleaning of raw agricultural census data.</p>
+                    <div class="mt-auto pt-4 border-t flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">Python / Pandas</span>
+                        <a href="https://github.com/davidandreifornis-lgtm" target="_blank" class="text-primary font-bold text-xs hover:underline">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. PDAO Demographic Analysis -->
+            <div class="project-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col hover:shadow-xl transition-all" data-category="viz">
+                <div class="h-40 bg-indigo-600 flex items-center justify-center text-white">
+                    <i class="fas fa-users text-5xl opacity-40"></i>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="font-bold text-lg mb-2">PDAO Beneficiary Dashboard</h3>
+                    <p class="text-slate-600 text-sm mb-4">Interactive Excel dashboard visualizing PDAO program beneficiaries across Calamba City.</p>
+                    <div class="mt-auto pt-4 border-t flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">Excel / Data Viz</span>
+                        <a href="https://github.com/davidandreifornis-lgtm" target="_blank" class="text-primary font-bold text-xs hover:underline">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. DepEd Program Tracker -->
+            <div class="project-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col hover:shadow-xl transition-all" data-category="sql">
+                <div class="h-40 bg-slate-800 flex items-center justify-center text-white">
+                    <i class="fas fa-school text-5xl opacity-40"></i>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="font-bold text-lg mb-2">DepEd Records Management</h3>
+                    <p class="text-slate-600 text-sm mb-4">Relational database design for organizing student and program data for DepEd Calamba.</p>
+                    <div class="mt-auto pt-4 border-t flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">MySQL</span>
+                        <a href="https://github.com/davidandreifornis-lgtm" target="_blank" class="text-primary font-bold text-xs hover:underline">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Python Market Price Scraper -->
+            <div class="project-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col hover:shadow-xl transition-all" data-category="python">
+                <div class="h-40 bg-yellow-500 flex items-center justify-center text-white">
+                    <i class="fas fa-shopping-cart text-5xl opacity-40"></i>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="font-bold text-lg mb-2">Agri-Market Web Scraper</h3>
+                    <p class="text-slate-600 text-sm mb-4">Tool to collect daily market prices for agricultural goods to assist in local price monitoring.</p>
+                    <div class="mt-auto pt-4 border-t flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">Python / BeautifulSoup</span>
+                        <a href="https://github.com/davidandreifornis-lgtm" target="_blank" class="text-primary font-bold text-xs hover:underline">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Cisco Capstone Project -->
+            <div class="project-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col hover:shadow-xl transition-all" data-category="viz">
+                <div class="h-40 bg-blue-400 flex items-center justify-center text-white">
+                    <i class="fas fa-globe-asia text-5xl opacity-40"></i>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="font-bold text-lg mb-2">Cisco: Global Data Trends</h3>
+                    <p class="text-slate-600 text-sm mb-4">Analyzed global connectivity datasets as part of the Data Analytics Essentials certification.</p>
+                    <div class="mt-auto pt-4 border-t flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">Data Analytics</span>
+                        <a href="https://github.com/davidandreifornis-lgtm" target="_blank" class="text-primary font-bold text-xs hover:underline">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. SQL Sales Performance -->
+            <div class="project-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col hover:shadow-xl transition-all" data-category="sql">
+                <div class="h-40 bg-purple-700 flex items-center justify-center text-white">
+                    <i class="fas fa-chart-line text-5xl opacity-40"></i>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="font-bold text-lg mb-2">E-Commerce SQL Analysis</h3>
+                    <p class="text-slate-600 text-sm mb-4">Complex queries to identify high-value customers and peak sales hours for a sample e-commerce DB.</p>
+                    <div class="mt-auto pt-4 border-t flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">PostgreSQL</span>
+                        <a href="https://github.com/davidandreifornis-lgtm" target="_blank" class="text-primary font-bold text-xs hover:underline">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Python Portfolio Website -->
+            <div class="project-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col hover:shadow-xl transition-all" data-category="python">
+                <div class="h-40 bg-slate-900 flex items-center justify-center text-white">
+                    <i class="fab fa-python text-5xl text-yellow-400 opacity-60"></i>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="font-bold text-lg mb-2">Automated Report Generator</h3>
+                    <p class="text-slate-600 text-sm mb-4">A Python tool that converts SQL query results into formatted PDF reports for city planning meetings.</p>
+                    <div class="mt-auto pt-4 border-t flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">Python / ReportLab</span>
+                        <a href="https://github.com/davidandreifornis-lgtm" target="_blank" class="text-primary font-bold text-xs hover:underline">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white py-12 border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-slate-500 font-medium mb-4">Interested in collaboration?</p>
+            <a href="mailto:davidandreifornis@gmail.com" class="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700 transition shadow-md inline-block">
+                Send a Message
+            </a>
+            <p class="mt-12 text-xs text-slate-400 uppercase tracking-widest">David Andrei G. Fornis | 2024</p>
+        </div>
     </footer>
 
     <script>
-        const projects = [
-            {
-                title: "I-SEE YOU: Digital Eye Monitoring System",
-                category: "Full-Stack • Database",
-                description: "A digital monitoring system for patient eye examination records with structured database management. Awarded Most Innovative & Best Overall Project at DCI Week Tech Expo 2026.",
-                tech: ["Python", "SQL", "MySQL", "HTML/CSS/JS"],
-                link: "#"
-            },
-            {
-                title: "Data Management & Explanatory Analysis",
-                category: "Data Analytics",
-                description: "End-to-end data management system including collection, cleaning, validation, and exploratory data analysis to support city decision-making.",
-                tech: ["Excel", "SQL", "Python", "Power BI"],
-                link: "#"
-            }
-        ];
+        function filterProjects(category) {
+            const projects = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
 
-        function renderProjects() {
-            const container = document.getElementById('projectsGrid');
-            container.innerHTML = projects.map(p => `
-                <div class="project-card bg-slate-900 border border-slate-700 rounded-3xl overflow-hidden">
-                    <div class="h-64 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center text-6xl">
-                        📊
-                    </div>
-                    <div class="p-8">
-                        <div class="text-blue-400 text-xs font-medium tracking-widest mb-2">${p.category}</div>
-                        <h3 class="text-2xl font-semibold mb-4">${p.title}</h3>
-                        <p class="text-slate-400 mb-6">${p.description}</p>
-                        <div class="flex flex-wrap gap-2">
-                            ${p.tech.map(t => `<span class="text-xs bg-slate-800 px-4 py-2 rounded-3xl">${t}</span>`).join('')}
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'bg-primary', 'text-white');
+                btn.classList.add('bg-white', 'text-slate-900', 'border-slate-200');
+            });
+
+            const currentBtn = event.currentTarget;
+            currentBtn.classList.add('active', 'bg-primary', 'text-white');
+            currentBtn.classList.remove('bg-white', 'text-slate-900', 'border-slate-200');
+
+            projects.forEach(project => {
+                if (category === 'all' || project.getAttribute('data-category') === category) {
+                    project.style.display = 'flex';
+                } else {
+                    project.style.display = 'none';
+                }
+            });
         }
-
-        function toggleMobileMenu() {
-            // Add mobile menu logic if needed
-            alert("Mobile menu coming soon!");
-        }
-
-        window.onload = renderProjects;
     </script>
 </body>
 </html>
