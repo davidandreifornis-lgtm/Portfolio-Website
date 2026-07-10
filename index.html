@@ -53,7 +53,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Scroll Reveal Animation */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -64,69 +63,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Floating elements */
-        .float {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-25px); }
-        }
-
-        /* Gradient text */
-        .gradient-text {
-            background: linear-gradient(90deg, #60a5fa, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Project card shine effect */
-        .project-card {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .project-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 40%;
-            height: 200%;
-            background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(255,255,255,0.3),
-                transparent
-            );
-            transform: skewX(-25deg);
-            transition: all 0.7s;
-            opacity: 0;
-        }
-        
-        .project-card:hover::after {
-            left: 150%;
-            opacity: 1;
-            transition: all 0.7s;
-        }
-
-        /* Custom Scrollbar for Modal */
-        .custom-scroll {
-            scrollbar-width: thin;
-            scrollbar-color: rgb(51 65 85) transparent;
-        }
-        .custom-scroll::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scroll::-webkit-scrollbar-thumb {
-            background-color: rgb(51 65 85);
-            border-radius: 20px;
-        }
-        .custom-scroll::-webkit-scrollbar-thumb:hover {
-            background-color: rgb(71 85 105);
-        }
     </style>
 </head>
 <body class="tail-container bg-slate-950 text-slate-200 overflow-x-hidden">
@@ -134,19 +70,12 @@
     <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-lg border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
             <div class="flex items-center gap-3">
-            <!-- Stronger Emphasis -->
-            <div class="flex items-center gap-3">
-                <div class="relative">
-                    <img src="logo_ni_bai.png" 
-                        alt="David Fornis Logo" 
-                        class="w-12 h-12 object-contain drop-shadow-[0_0_15px_rgb(59,130,246)] hover:scale-110 transition-all duration-300">
-                </div>
-                <span class="text-2xl font-semibold heading-font tracking-tight">David Fornis</span>
-            </div>
+                <a href="index.html" class="text-2xl font-semibold heading-font tracking-tight hover:text-blue-400 transition-colors">David Fornis</a>
             </div>
             
             <div class="hidden md:flex items-center gap-10 text-sm font-medium">
-                <a href="#about" class="nav-link hover:text-blue-400 transition-colors">About</a>
+                <a href="index.html" class="nav-link hover:text-blue-400 transition-colors">Home</a>
+                <a href="about.html" class="nav-link hover:text-blue-400 transition-colors">About</a>
                 <a href="#skills" class="nav-link hover:text-blue-400 transition-colors">Skills</a>
                 <a href="#projects" class="nav-link hover:text-blue-400 transition-colors">Projects</a>
                 <a href="#experience" class="nav-link hover:text-blue-400 transition-colors">Experience</a>
@@ -157,7 +86,7 @@
                 <a href="https://linkedin.com/in/davidandreifornis" target="_blank" class="p-3 hover:bg-slate-800 rounded-2xl transition-colors">
                     <i class="fab fa-linkedin text-xl"></i>
                 </a>
-                <a href="https://github.com/davidandreifornis-lgtm/davidandreifornis-lgtm" target="_blank" class="p-3 hover:bg-slate-800 rounded-2xl transition-colors">
+                <a href="https://github.com/davidandreifornis-lgtm" target="_blank" class="p-3 hover:bg-slate-800 rounded-2xl transition-colors">
                     <i class="fab fa-github text-xl"></i>
                 </a>
                 <button onclick="toggleMobileMenu()" class="md:hidden p-3 hover:bg-slate-800 rounded-2xl transition-colors">
@@ -169,7 +98,8 @@
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="hidden md:hidden fixed inset-0 bg-slate-950 z-50 pt-20 px-6">
             <div class="flex flex-col gap-6 text-lg font-medium">
-                <a href="#about" onclick="toggleMobileMenu()" class="py-2 border-b border-slate-800">About</a>
+                <a href="index.html" onclick="toggleMobileMenu()" class="py-2 border-b border-slate-800">Home</a>
+                <a href="about.html" onclick="toggleMobileMenu()" class="py-2 border-b border-slate-800">About</a>
                 <a href="#skills" onclick="toggleMobileMenu()" class="py-2 border-b border-slate-800">Skills</a>
                 <a href="#projects" onclick="toggleMobileMenu()" class="py-2 border-b border-slate-800">Projects</a>
                 <a href="#experience" onclick="toggleMobileMenu()" class="py-2 border-b border-slate-800">Experience</a>
@@ -199,24 +129,14 @@
                 </p>
                 
                 <div class="flex flex-wrap gap-4">
-                    <a href="#projects" class="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-indigo-500 transition-all rounded-3xl font-semibold flex items-center gap-3 group shadow-lg">
-                        Explore Projects
+                    <a href="https://github.com/davidandreifornis-lgtm/Portfolio-Website/blob/main/DavidFornis_Resume.pdf" target="_blank" 
+                       class="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-indigo-500 transition-all rounded-3xl font-semibold flex items-center gap-3 group shadow-lg">
+                        View my Resume
                         <i class="fas fa-arrow-right group-active:translate-x-1 transition"></i>
                     </a>
-                    <a href="#contact" class="px-8 py-4 border border-slate-300 hover:bg-slate-800 transition-all rounded-3xl font-semibold">
-                        Let's Connect
+                    <a href="about.html" class="px-8 py-4 border border-slate-300 hover:bg-slate-800 transition-all rounded-3xl font-semibold">
+                        Learn More About Me
                     </a>
-                </div>
-
-                <div class="flex items-center gap-8 text-sm pt-4">
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-award text-amber-400"></i>
-                        <span>Most Innovative Project 2026</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-users text-blue-400"></i>
-                        <span>SPES Enumerator</span>
-                    </div>
                 </div>
             </div>
             
@@ -244,8 +164,7 @@
         </div>
     </section>
 
-    <!-- About, Skills, Experience sections remain unchanged (same as your last version) -->
-    <!-- About -->
+    <!-- Short About Teaser -->
     <section id="about" class="py-24 bg-slate-900">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-12 gap-16 items-center">
@@ -253,22 +172,21 @@
                     <div class="sticky top-28">
                         <div class="inline text-blue-400 text-sm tracking-[3px] font-mono">CHAPTER 01</div>
                         <h2 class="text-5xl heading-font font-semibold mt-3">About Me</h2>
-                        <p class="mt-6 text-slate-400">Data enthusiast with a passion for clarity and impact.</p>
                     </div>
                 </div>
-                <div class="md:col-span-7 space-y-8 text-lg leading-relaxed text-slate-300 reveal">
-                    <p>Detail-oriented and analytical aspiring Junior Data Analyst with hands-on experience in data collection, validation, reporting, and database management.</p>
-                    <p>Currently gaining real-world experience through the Special Program for Employment of Students (SPES) while pursuing my Bachelor of Science in Information Technology at City College of Calamba.</p>
-                    <div class="grid grid-cols-2 gap-8 pt-6">
-                        <div>
-                            <div class="text-blue-400 text-sm font-medium">LOCATION</div>
-                            <div class="text-xl">Calamba City, Laguna</div>
-                        </div>
-                        <div>
-                            <div class="text-blue-400 text-sm font-medium">CURRENTLY</div>
-                            <div class="text-xl">Available for Junior Roles / Internships</div>
-                        </div>
-                    </div>
+                <div class="md:col-span-7 space-y-6 text-lg leading-relaxed text-slate-300 reveal">
+                    <p>
+                        Detail-oriented aspiring Junior Data Analyst with experience in data collection, validation, 
+                        database management, and turning data into actionable insights.
+                    </p>
+                    <p>
+                        Currently working as an Enumerator at Calamba City Hall while completing my BS in Information Technology.
+                    </p>
+                    <a href="about.html" 
+                       class="inline-flex items-center gap-3 text-blue-400 hover:text-blue-300 font-medium group">
+                        Read my full story 
+                        <span class="group-hover:translate-x-1 transition">→</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -357,46 +275,91 @@
         </div>
     </div>
 
-    <!-- Experience -->
-    <section id="experience" class="py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <div class="inline text-blue-400 text-sm tracking-[3px] font-mono">CHAPTER 04</div>
-                <h2 class="text-5xl heading-font font-semibold mt-3">Experience</h2>
+    <!-- What I'm Working On -->
+<section id="experience" class="py-28 bg-slate-900 relative overflow-hidden">
+    <div class="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-blue-900/10 to-transparent"></div>
+    
+    <div class="max-w-5xl mx-auto px-6 relative">
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-3 bg-slate-800 border border-blue-500/30 text-blue-400 text-sm font-medium px-6 py-3 rounded-3xl mb-6">
+                <i class="fas fa-laptop-code"></i>
+                CURRENT FOCUS
             </div>
-            <div class="max-w-4xl mx-auto space-y-16">
-                <div class="grid md:grid-cols-12 gap-8 items-start reveal">
-                    <div class="md:col-span-4">
-                        <div class="text-slate-400">June 2024 — Present</div>
-                        <div class="text-xl font-semibold mt-1">Enumerator (SPES)</div>
-                        <div class="text-blue-400">Calamba City Hall</div>
+            <h2 class="text-5xl md:text-6xl heading-font font-semibold tracking-tighter">What I'm Working On</h2>
+        </div>
+
+        <div class="prose prose-invert max-w-3xl mx-auto text-lg leading-relaxed text-slate-300 mb-20 text-center">
+            <p>
+                I'm building strong foundations in <strong>Data Analytics</strong> while also applying my skills in 
+                <strong>Programming</strong> and <strong>Website Development</strong>.
+            </p>
+        </div>
+
+        <!-- Main Highlight Cards -->
+        <div class="grid md:grid-cols-3 gap-8">
+            
+            <!-- SPES Enumerator -->
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-3xl p-8 hover:border-blue-500/60 transition-all group">
+                <div class="text-4xl mb-6">📍</div>
+                <h3 class="text-2xl font-semibold mb-1">SPES Enumerator</h3>
+                <p class="text-blue-400 mb-6">Calamba City Hall • 2024 – Present</p>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Collecting, cleaning, and managing real-world data for city programs in Agriculture, Education, and PDAO.
+                </p>
+            </div>
+
+            <!-- Programming & Development -->
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-3xl p-8 hover:border-violet-500/60 transition-all group">
+                <div class="text-4xl mb-6">💻</div>
+                <h3 class="text-2xl font-semibold mb-1">Programming &amp; Web Development</h3>
+                <p class="text-violet-400 mb-6">Self-Taught &amp; Academic</p>
+                <div class="space-y-3 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-slate-300">Python</span>
+                        <span class="text-emerald-400">Strong</span>
                     </div>
-                    <div class="md:col-span-8 text-slate-300">
-                        <ul class="list-disc list-outside space-y-4 pl-6">
-                            <li>Collected, verified, and maintained data across multiple city programs (Agriculture, PDAO, DepEd).</li>
-                            <li>Conducted field surveys and interviews for accurate demographic information.</li>
-                            <li>Organized and encoded datasets to support city planning and reporting needs.</li>
-                        </ul>
+                    <div class="flex justify-between">
+                        <span class="text-slate-300">HTML / CSS / JavaScript</span>
+                        <span class="text-emerald-400">Strong</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-300">Database Management</span>
+                        <span class="text-emerald-400">Good</span>
                     </div>
                 </div>
-                
-                <div class="grid md:grid-cols-12 gap-8 items-start reveal">
-                    <div class="md:col-span-4">
-                        <div class="text-slate-400">Jan 2025 — Dec 2025</div>
-                        <div class="text-xl font-semibold mt-1">I-SEE YOU: Digital Eye Monitoring System</div>
-                        <div class="text-blue-400">City College of Calamba • Capstone</div>
+            </div>
+
+            <!-- Data Analytics -->
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-3xl p-8 hover:border-emerald-500/60 transition-all group">
+                <div class="text-4xl mb-6">📊</div>
+                <h3 class="text-2xl font-semibold mb-1">Data Analytics</h3>
+                <p class="text-emerald-400 mb-6">Actively Learning</p>
+                <div class="space-y-3 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-slate-300">SQL</span>
+                        <span class="text-emerald-400">Advanced</span>
                     </div>
-                    <div class="md:col-span-8 text-slate-300">
-                        <ul class="list-disc list-outside space-y-4 pl-6">
-                            <li>Designed and developed a full digital monitoring system for eye examination records.</li>
-                            <li>Built and managed a structured database for secure patient data storage and retrieval.</li>
-                            <li>Awarded "Most Innovative Project" and "Best Overall Project" at DCI Week Tech Expo 2026.</li>
-                        </ul>
+                    <div class="flex justify-between">
+                        <span class="text-slate-300">Power BI / Tableau</span>
+                        <span class="text-emerald-400">Learning</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-300">Data Visualization</span>
+                        <span class="text-emerald-400">Learning</span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+
+        <!-- Career Goal -->
+        <div class="mt-16 bg-slate-800 border border-blue-500/30 rounded-3xl p-10 text-center">
+            <p class="text-2xl font-medium text-blue-400">
+                Looking for a <span class="text-white font-semibold">Junior Data Analyst</span> role where I can combine 
+                my data skills with programming and web development experience.
+            </p>
+        </div>
+    </div>
+</section>
 
     <!-- Contact -->
     <section id="contact" class="py-24 bg-slate-900 relative overflow-hidden">
